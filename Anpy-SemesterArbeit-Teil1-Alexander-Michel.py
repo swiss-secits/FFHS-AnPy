@@ -65,16 +65,16 @@ print(fib_aufrufe_graph(7))
 aufrufe7 = aufrufe
 Dauer7 = te
 
-# Libary importiern, damit die Werte graphisch dargestellt werdenk können.
+# Libary importiern, damit die Werte graphisch dargestellt werden können.
 import matplotlib.pyplot as plt
 
 #Anzahl aufrufe mit Fibonaccizahl vergleichen
-xiterativewerte=[1, 2, 3, 5, 8, 13]
-yiterativewerte= [aufrufe2, aufrufe3, aufrufe4, aufrufe5, aufrufe6, aufrufe7]
+xrekursivewerte=[1, 2, 3, 5, 8, 13]
+yrekursivewerte= [aufrufe2, aufrufe3, aufrufe4, aufrufe5, aufrufe6, aufrufe7]
 
-plt.plot(xiterativewerte, yiterativewerte)
-plt.scatter(xiterativewerte, yiterativewerte)
-
+plt.plot(xrekursivewerte, yrekursivewerte)
+plt.scatter(xrekursivewerte, yrekursivewerte)
+# x und y Achse Label beschriftung definieren
 plt.ylabel("Anzahl rekursive Funktionsaufrufe")
 plt.xlabel("fibonacci Zahl ")
 plt.show()
@@ -91,12 +91,12 @@ def fib(n):
     return p
 
 #Dauer der Berechung mit berechneter Fibonaccizahl vergleichen
-xiterativewerte=[1, 2, 3, 5, 8, 13]
-yiterativewerte= [Dauer2, Dauer3, Dauer4, Dauer5, Dauer6, Dauer7]
+xrekursivewerte=[1, 2, 3, 5, 8, 13]
+yrekursivewerte= [Dauer2, Dauer3, Dauer4, Dauer5, Dauer6, Dauer7]
 
-plt.plot(xiterativewerte, yiterativewerte)
-plt.scatter(xiterativewerte, yiterativewerte)
-
+plt.plot(xrekursivewerte, yrekursivewerte)
+plt.scatter(xrekursivewerte, yrekursivewerte)
+# x und y Achse Label beschriftung definieren
 plt.ylabel("Berechungsdauer der rekursiven Funktion")
 plt.xlabel("fibonacci Zahl")
 plt.show()
@@ -142,7 +142,7 @@ yiterativewerte= [aufrufe2, aufrufe3, aufrufe4, aufrufe5, aufrufe6, aufrufe7]
 
 plt.plot(xiterativewerte, yiterativewerte)
 plt.scatter(xiterativewerte, yiterativewerte)
-
+# x und y Achse Label beschriftung definieren
 plt.ylabel("Anzahl iterative Funktionsaufrufe")
 plt.xlabel("fibonacci Zahl ")
 plt.show()
@@ -154,6 +154,7 @@ yiterativewerte= [Dauer2, Dauer3, Dauer4, Dauer5, Dauer6, Dauer7]
 plt.plot(xiterativewerte, yiterativewerte)
 plt.scatter(xiterativewerte, yiterativewerte)
 
+# x und y Achse Label beschriftung definieren
 plt.ylabel("Berechungsdauer der iterativen Funktion")
 plt.xlabel("fibonacci Zahl ")
 plt.show()
