@@ -105,5 +105,8 @@ ax.set_ylim(top=55)  # set safe limit to ensure that all data is visible.
 anim = functools.partial(animate, bar_container=bar_container)
 ani = animation.FuncAnimation(fig, anim, 50, repeat=False, blit=True)
 plt.show()
-#animation.Animation.to_html5_video(plt.show())
 
+# Da die PNG Grafik nicht animierte Werte darstellen kann, wird der Output als HTML Datei gespeichert
+htmlanimation = animation.Animation.to_jshtml(ani)
+with open("htmlanimation-histogram.html", "a") as f:
+    f.write(htmlanimation)
