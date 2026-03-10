@@ -1,4 +1,4 @@
-from email.policy import default
+# Teil 2 Anpy Semseterarbeit
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -11,9 +11,54 @@ plt.show()
 
 
 #	Funktionsgraphen
+# Source: https://matplotlib.org/stable/users/explain/quick_start.html
+
+# x-Werte erzeugen
+x = np.linspace(-10, 10, 400)
+
+# Funktion definieren
+y = x**2
+
+# Plot erstellen
+plt.plot(x, y)
+
+# Beschriftungen
+plt.title("Funktionsgraph von f(x) = x^2")
+plt.xlabel("x")
+plt.ylabel("f(x)")
+
+# Gitter anzeigen
+plt.grid()
+
+# Plot anzeigen
+plt.show()
 
 
 #	Mehrere Funktionsgraphen in der selben Graphik
+# x-Werte
+x = np.linspace(-10, 10, 400)
+
+# Funktionen
+y1 = x**2
+y2 = x**3
+
+# Graphen zeichnen
+plt.plot(x, y1, label="f(x) = x^2")
+plt.plot(x, y2, label="g(x) = x^3")
+
+# Beschriftungen
+plt.title("Mehrere Funktionsgraphen")
+plt.xlabel("x")
+plt.ylabel("y")
+
+# Legende und Gitter
+plt.legend()
+plt.grid()
+
+# Anzeigen
+plt.show()
+
+
 #	Balkendiagramme
 # Source Code: https://matplotlib.org/stable/gallery/lines_bars_and_markers/bar_label_demo.html
 species = ('Adelie', 'Chinstrap', 'Gentoo')
@@ -71,13 +116,12 @@ ax.set_title("Matplotlib bakery: A pie")
 plt.show()
 data = 0
 fig = 0
+
+
 #	Histogramme
 # Source Code: https://matplotlib.org/stable/gallery/animation/animated_histogram.html
 
 import functools
-
-import matplotlib.pyplot as plt
-import numpy as np
 
 import matplotlib.animation as animation
 # Setting up a random number generator with a fixed state for reproducibility.
@@ -104,7 +148,7 @@ ax.set_ylim(top=55)  # set safe limit to ensure that all data is visible.
 
 anim = functools.partial(animate, bar_container=bar_container)
 ani = animation.FuncAnimation(fig, anim, 50, repeat=False, blit=True)
-plt.show()
+#plt.show() Wird kein Show gemacht, da so die animation nicht dargestellt wird, daher wird eine HTML Datei erzeugt
 
 # Da die PNG Grafik nicht animierte Werte darstellen kann, wird der Output als HTML Datei gespeichert
 htmlanimation = animation.Animation.to_jshtml(ani)
