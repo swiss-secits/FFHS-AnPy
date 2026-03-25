@@ -8,7 +8,6 @@ import matplotlib.pyplot as plt
 
 # x-Werte erzeugen
 x = np.linspace(-10, 10, 400)
-
 # Funktion definieren
 y = x**2
 # Plot erstellen
@@ -84,6 +83,7 @@ plt.show()
 x = [1,2,3,4,5]
 y = [1,4,9,16,25]
 
+# plt.bar funktion für Balkendiagramme
 plt.bar(x, y)
 plt.title("Balkendiagramm f(x)=x^2")
 plt.xlabel("x")
@@ -187,7 +187,7 @@ daten = [
     "2026-03-05", "2026-03-05", "2026-03-06"
 ]
 
-# Histogramm erstellen
+# Histogramm erstellen via plt.hist Funktion. Die Anzahl Datum wiederholungen sind die Anzahl Angriffe an diesem Tag, sprich die plt.hist Funktion behinhaltet standard mässig eine count funktion.
 plt.hist(daten, bins=20)
 
 # Beschriftung
