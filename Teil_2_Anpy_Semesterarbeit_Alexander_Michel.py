@@ -1,14 +1,7 @@
-# Teil 2 Anpy Semseterarbeit
+# Teil 2 Anpy Semesterarbeit
 
 import numpy as np
 import matplotlib.pyplot as plt
-
-x = np.arange(0, 5, 0.1)
-y = np.sin(x)
-plt.plot(x, y)
-plt.show()
-
-
 
 #	Funktionsgraphen
 # Source: https://matplotlib.org/stable/users/explain/quick_start.html
@@ -18,33 +11,36 @@ x = np.linspace(-10, 10, 400)
 
 # Funktion definieren
 y = x**2
-
 # Plot erstellen
 plt.plot(x, y)
-
 # Beschriftungen
 plt.title("Funktionsgraph von f(x) = x^2")
 plt.xlabel("x")
 plt.ylabel("f(x)")
-
 # Gitter anzeigen
 plt.grid()
-
 # Plot anzeigen
 plt.show()
 
+x = np.arange(0, 10, 0.1)
+y = np.sin(x)
+plt.plot(x, y)
+plt.title("Funktionsgraph von f(x) = sin(x)")
+plt.show()
 
 #	Mehrere Funktionsgraphen in der selben Graphik
 # x-Werte
-x = np.linspace(-10, 10, 400)
+x = np.linspace(-5, 5, 2)
 
 # Funktionen
 y1 = x**2
-y2 = x**3
+y2 = np.sin(x)
+y3 = x*3+2
 
 # Graphen zeichnen
 plt.plot(x, y1, label="f(x) = x^2")
-plt.plot(x, y2, label="g(x) = x^3")
+plt.plot(x, y2, label="g(x) = sin(x)")
+plt.plot(x, y3, label="h(x) = 3x + 2")
 
 # Beschriftungen
 plt.title("Mehrere Funktionsgraphen")
@@ -61,6 +57,7 @@ plt.show()
 
 #	Balkendiagramme
 # Source Code: https://matplotlib.org/stable/gallery/lines_bars_and_markers/bar_label_demo.html
+# Beispiel von Source Code direkt implementiert ohne Anpassungen
 species = ('Adelie', 'Chinstrap', 'Gentoo')
 sex_counts = {
     'Male': np.array([73, 34, 61]),
@@ -83,8 +80,19 @@ ax.legend()
 
 plt.show()
 
+# Eigenes Beispiel
+x = [1,2,3,4,5]
+y = [1,4,9,16,25]
+
+plt.bar(x, y)
+plt.title("Balkendiagramm f(x)=x^2")
+plt.xlabel("x")
+plt.ylabel("f(x)")
+plt.show()
+
 #	Tortendiagramme
 # Source Code: https://matplotlib.org/stable/gallery/pie_and_polar_charts/pie_and_donut_labels.html
+# Beispiel von Source Code direkt implementiert ohne Anpassungen
 fig, ax = plt.subplots(figsize=(6, 3), subplot_kw=dict(aspect="equal"))
 
 recipe = ["375 g flour",
@@ -117,10 +125,22 @@ plt.show()
 data = 0
 fig = 0
 
+#Eigenes Beispiel:
+# Source Code: https://matplotlib.org/stable/gallery/pie_and_polar_charts/pie_features.html
+# Label pro Wert angeben
+labels = 'Hunde', 'Katzen', 'Schildkröten', 'Hasen'
+# Werte definieren
+sizes = [2, 7, 4, 3]
+
+fig, ax = plt.subplots()
+plt.title('Verhältnis der Anzahl Tiere in der Familie', fontsize=20)
+# Kuchendiagramm mit label und prozenzahl darstellen erstellen
+ax.pie(sizes, labels=labels, autopct='%1.1f%%')
+plt.show()
 
 #	Histogramme
 # Source Code: https://matplotlib.org/stable/gallery/animation/animated_histogram.html
-
+# Beispiel von Source Code direkt implementiert ohne Anpassungen (nur die Speicherung als HTML wurde hinzugefügt)
 import functools
 
 import matplotlib.animation as animation
@@ -148,9 +168,32 @@ ax.set_ylim(top=55)  # set safe limit to ensure that all data is visible.
 
 anim = functools.partial(animate, bar_container=bar_container)
 ani = animation.FuncAnimation(fig, anim, 50, repeat=False, blit=True)
-#plt.show() Wird kein Show gemacht, da so die animation nicht dargestellt wird, daher wird eine HTML Datei erzeugt
+plt.show()
+#Wird kein Show gemacht, es wird eine HTML Datei erzeugt
 
 # Da die PNG Grafik nicht animierte Werte darstellen kann, wird der Output als HTML Datei gespeichert
 htmlanimation = animation.Animation.to_jshtml(ani)
 with open("htmlanimation-histogram.html", "a") as f:
     f.write(htmlanimation)
+
+
+# Eigenes Beispiel
+# Source Code Quelle: https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.hist.html#matplotlib.pyplot.hist
+# x-Werte (viele Punkte für gute Verteilung)
+# Beispiel-Daten: Anzahl Cyberangriffe pro Tag
+daten = [
+    "2026-03-01", "2026-03-01", "2026-03-02", "2026-03-02",
+    "2026-03-02", "2026-03-03", "2026-03-03", "2026-03-04",
+    "2026-03-05", "2026-03-05", "2026-03-06"
+]
+
+# Histogramm erstellen
+plt.hist(daten, bins=20)
+
+# Beschriftung
+plt.title("Verteilung Cyberangriffe pro Tag (Schweiz)")
+plt.xlabel("Anzahl Angriffe pro Tag")
+plt.ylabel("Häufigkeit")
+
+plt.grid()
+plt.show()
