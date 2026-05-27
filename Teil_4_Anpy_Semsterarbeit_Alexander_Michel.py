@@ -80,11 +80,11 @@ def simpson_regel(f, a, b, n):
     # innere Punkte bearbeiten
     for i in range(1, n):
 
-        # gerade Indizes erhalten Faktor 2
+        # gerade n erhalten Faktor 2
         if i % 2 == 0:
             s += 2 * f(x[i])
 
-        # ungerade Indizes erhalten Faktor 4
+        # ungerade n erhalten Faktor 4
         else:
             s += 4 * f(x[i])
 
@@ -108,29 +108,13 @@ f3 = lambda x: np.cos(x)
 # symbolische Variable x erzeugen
 x = sp.symbols('x')
 
-# exakter Wert Integral 1
-ew1 = float(
-    sp.integrate(1/x, (x, 1, 2))
-)
-
-# exakter Wert Integral 2
-ew2 = float(
-    sp.integrate(x**3 + 3*x**2, (x, 0, 1))
-)
-
-# exakter Wert Integral 3
-ew3 = float(
-    sp.integrate(
-        sp.cos(x),
-        (x, -np.pi/2, np.pi/2)
-    )
-)
+ew1 = float(sp.integrate(1/x, (x, 1, 2)))
+ew2 = float(sp.integrate(x**3 + 3*x**2, (x, 0, 1)))
+ew3 = float(sp.integrate(sp.cos(x),(x, -np.pi/2, np.pi/2)))
 
 
 # LISTE DER TESTFUNKTIONEN
-
 funktionen = [
-
     # Name, Funktion, a, b, exakter Wert
     ("1/x", f1, 1, 2, sp.log(2)),
 
@@ -139,30 +123,22 @@ funktionen = [
     ("cos(x)", f3, -np.pi/2, np.pi/2, 2)
 ]
 
-
 # verschiedene n-Werte
-n_werte = [2, 4, 8, 32, 128, 512, 4096]
+n_werte = [2, 4, 8, 32, 128, 512, 4096, 100000]
 
 
 # über alle Funktionen iterieren
 for name, f, a, b, exakt in funktionen:
-
     print("\nFunktion:", name)
-
     # Listen für Diagramme
     sekanten = []
     tangenten = []
     simpsons = []
-
-
     # verschiedene n testen
     for n in n_werte:
-
         # Approximationen berechnen
         sekante = sekanten_trapez_regel(f, a, b, n)
-
         tangente = tangenten_trapez_regel(f, a, b, n)
-
         simpson = simpson_regel(f, a, b, n)
 
 
@@ -193,7 +169,6 @@ for name, f, a, b, exakt in funktionen:
 
         # Ergebnisse + Fehler ausgeben
         print(
-
             # :.9f bedeutet:
             # Ausgabe mit 9 Nachkommastellen
             f"Sekante={sekante:.9f} "
@@ -206,7 +181,6 @@ for name, f, a, b, exakt in funktionen:
             f"fehler={abs(simpson - ew):.9f}| "
 
             f"Exakter Wert={ew}  | "
-
             f"n={n:2d} "
         )
 
