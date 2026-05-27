@@ -50,9 +50,9 @@ f2 = lambda x: x**3 + 3*x**2
 f3 = lambda x: np.cos(x)
 
 x = sp.symbols('x')
-ew1 = sp.integrate(1/x, (x, 1, 2))
-ew2 = sp.integrate(x**3 + 3*x**2, (x, 0, 1))
-ew3 = sp.integrate(sp.cos(x), (x, -sp.pi/2, sp.pi/2))
+ew1 = float(sp.integrate(1/x, (x, 1, 2)))
+ew2 = float(sp.integrate(x**3 + 3*x**2, (x, 0, 1)))
+ew3 = float(sp.integrate(sp.cos(x), (x, -sp.pi/2, sp.pi/2)))
 
 funktionen = [
     ("1/x", f1, 1, 2),
@@ -72,9 +72,17 @@ for name, f, a, b in funktionen:
         tangente = tangenten_trapez_regel(f, a, b, n)
         simpson = simpson_regel(f, a, b, n)
 
+        if f == f1:
+            ew = ew1
+        elif f == f2:
+            ew = ew2
+        elif f == f3:
+            ew = ew3
+
         print(
-            f"n={n:2d} | "
-            f"Sekante={sekante:.6f} | "
-            f"Tangente={tangente:.6f} | "
-            f"Simpson={simpson:.6f}"
+            f"Sekante={sekante:.9f} fehler={abs(sekante - ew):.9f} | "
+            f"Tangente={tangente:.9f} fehler={abs(tangente - ew):.9f}| "
+            f"Simpson={simpson:.9f} fehler={abs(simpson - ew):.9f}| "
+            f"Exakter Wert={ew}  | "
+            f"n={n:2d} "
         )
