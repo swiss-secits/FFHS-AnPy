@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 def sekanten_trapez_regel(f, a, b, n):
 
-    # Breite eines Teilintervalls
+    # Formel um die Höhe zu berechnen
     h = (b - a) / n
 
     # Erzeugt n+1 Stützstellen zwischen a und b
@@ -41,7 +41,7 @@ def ableitung(f, x, eps=1e-6):
 
 def tangenten_trapez_regel(f, a, b, n):
 
-    # Breite eines Teilintervalls
+    # Formel um die Höhe zu berechnen
     h = (b - a) / n
 
     # linke Startpunkte aller Intervalle
@@ -68,11 +68,7 @@ def tangenten_trapez_regel(f, a, b, n):
 
 def simpson_regel(f, a, b, n):
 
-    # Simpson benötigt gerade Anzahl Intervalle
-    if n % 2 == 1:
-        n += 1
-
-    # Breite eines Teilintervalls
+    # Formel um die Höhe zu berechnen
     h = (b - a) / n
 
     # Stützstellen erzeugen
