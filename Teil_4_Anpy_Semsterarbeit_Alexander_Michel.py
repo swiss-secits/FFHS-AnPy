@@ -1,5 +1,6 @@
 import numpy as np
 import sympy as sp
+import matplotlib.pyplot as plt
 
 # Sekantentrapezregel
 
@@ -52,25 +53,42 @@ f3 = lambda x: np.cos(x)
 x = sp.symbols('x')
 ew1 = float(sp.integrate(1/x, (x, 1, 2)))
 ew2 = float(sp.integrate(x**3 + 3*x**2, (x, 0, 1)))
-ew3 = float(sp.integrate(sp.cos(x), (x, -sp.pi/2, sp.pi/2)))
+ew3 = float(sp.integrate(sp.cos(x), (x, -np.pi/2, np.pi/2)))
 
 funktionen = [
-    ("1/x", f1, 1, 2),
-    ("x^3 + 3x^2", f2, 0, 1),
-    ("cos(x)", f3, -np.pi/2, np.pi/2)
+    ("1/x", f1, 1, 2, sp.log(2)),
+    ("x^3 + 3x^2", f2, 0, 1, sp.Rational(5,4)),
+    ("cos(x)", f3, -np.pi/2, np.pi/2, 2)
 ]
 
 n_werte = [2, 4, 8, 32, 128, 512, 4096]
 
-for name, f, a, b in funktionen:
+for name, f, a, b, exakt in funktionen:
 
     print("\nFunktion:", name)
+    sekanten = []
+    tangenten = []
+    simpsons = []
+
 
     for n in n_werte:
 
         sekante = sekanten_trapez_regel(f, a, b, n)
         tangente = tangenten_trapez_regel(f, a, b, n)
         simpson = simpson_regel(f, a, b, n)
+
+        sekanten.append(
+            sekanten_trapez_regel(f, a, b, n)
+        )
+
+        tangenten.append(
+            tangenten_trapez_regel(f, a, b, n)
+        )
+
+        simpsons.append(
+            simpson_regel(f, a, b, n)
+        )
+
 
         if f == f1:
             ew = ew1
@@ -86,3 +104,26 @@ for name, f, a, b in funktionen:
             f"Exakter Wert={ew}  | "
             f"n={n:2d} "
         )
+
+    plt.figure(figsize=(8,5))
+
+    plt.plot(n_werte, sekanten, marker="o", label="Sekante")
+    plt.plot(n_werte, tangenten, marker="o", label="Tangente")
+    plt.plot(n_werte, simpsons, marker="o", label="Simpson")
+
+    # exakter Wert
+    plt.axhline(
+        y=float(exakt),
+        linestyle="--",
+        label="Exakt"
+    )
+
+    plt.title(f"Approximationen für {name}")
+
+    plt.xlabel("n")
+    plt.ylabel("Integralwert")
+
+    plt.legend()
+    plt.grid()
+
+    plt.show()
